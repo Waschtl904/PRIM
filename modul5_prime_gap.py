@@ -20,9 +20,24 @@ from modul4_benchmarks import AdvancedBenchmarkAnalyzer
 
 def main():
     # 1. Konfiguration laden
-    cfg = json.load(open("config.json"))
+    import json
+    from modul4_benchmarks import AdvancedBenchmarkAnalyzer
+
+    # 1. Konfiguration sicher laden mit Fehlerfallback
+    try:
+        with open("config.json", encoding="utf-8") as f:
+            cfg = json.load(f)
+    except Exception as e:
+        print(f"⚠ Fehler beim Laden von config.json: {e}")
+    print(
+        "  Verwende Standard-Konfiguration: use_numba=True, parallel=True, cache=True"
+    )
+    cfg = {"use_numba": True, "parallel": True, "cache": True}
+
     analyzer = AdvancedBenchmarkAnalyzer(
-        use_numba=cfg["use_numba"], use_parallel=cfg["parallel"], use_cache=cfg["cache"]
+        use_numba=cfg.get("use_numba", True),
+        use_parallel=cfg.get("parallel", True),
+        use_cache=cfg.get("cache", True),
     )
 
     # 2. Parameter
