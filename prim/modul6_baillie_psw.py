@@ -13,10 +13,12 @@ Dieses Skript:
 
 import json
 import time
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from modul4_benchmarks import AdvancedBenchmarkAnalyzer
+
+from prim.modul4_benchmarks import AdvancedBenchmarkAnalyzer
 
 
 def miller_rabin(n: int) -> bool:
@@ -87,7 +89,7 @@ def main():
     try:
         with open("config.json", encoding="utf-8") as f:
             cfg = json.load(f)
-    except:
+    except BaseException:
         cfg = {"use_numba": True, "use_parallel": True, "use_cache": True}
 
     analyzer = AdvancedBenchmarkAnalyzer(
@@ -101,7 +103,8 @@ def main():
     test_numbers = np.concatenate(
         [
             analyzer.sieve_numba(limit),
-            np.array([2, 3, 4, 561, 1105, 1729, 2465, 2821]),  # Carmichael-Zahlen
+            # Carmichael-Zahlen
+            np.array([2, 3, 4, 561, 1105, 1729, 2465, 2821]),
         ]
     )
 

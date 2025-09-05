@@ -1,8 +1,9 @@
 # modul2_simple_sieve_numba.py
 
-import numpy as np
-import numba as nb
 from math import sqrt
+
+import numba as nb
+import numpy as np
 
 
 @nb.njit(cache=True)

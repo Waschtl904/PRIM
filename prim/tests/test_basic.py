@@ -1,5 +1,4 @@
-﻿import pytest
-from modul4_benchmarks import AdvancedBenchmarkAnalyzer
+from prim.modul4_benchmarks import AdvancedBenchmarkAnalyzer
 
 
 def test_fj32_small_primes():

@@ -1,0 +1,2 @@
+[console_scripts]
+primetest-cli = modul5_prime_gap:main

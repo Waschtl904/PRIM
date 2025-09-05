@@ -9,14 +9,15 @@ Autor: Sebastian
 Datum: September 2025
 """
 
-import sys
+import importlib.util
 import os
+import sys
 import time
+from typing import Any, Dict, List, Tuple
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from typing import List, Tuple, Dict, Any
-import importlib.util
 
 # Projekt-Root definieren und in sys.path einfügen
 project_root = r"C:\Users\sebas\Desktop\coding\PRIM"
@@ -49,7 +50,8 @@ except ImportError as e:
     print(f"⚠️ Warnung: Konnte Numba-Sieb nicht importieren: {e}")
     HAS_NUMBA_SIEVE = False
 
-# Sicherstellen, dass primetest existiert; falls dynamisch nicht geladen, regulär importieren
+# Sicherstellen, dass primetest existiert; falls dynamisch nicht geladen,
+# regulär importieren
 try:
     primetest  # type: ignore
 except NameError:

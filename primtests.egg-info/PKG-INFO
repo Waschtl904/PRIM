@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: primtests
+Version: 0.1.0
+Summary: Hybride Primzahltests und Analyse-Tools
+Author: Sebastian Waschtl
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: numba
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: openpyxl
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: summary

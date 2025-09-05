@@ -1,3 +1,0 @@
-python modul3_hybrid.py
-
-C:\Users\sebas\Desktop\coding\PRIM> 

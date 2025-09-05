@@ -11,16 +11,15 @@ Dieses Skript:
 - Exportiert Ergebnisse in modul5_data/ und modul5_plots/
 """
 
-import json
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from modul4_benchmarks import AdvancedBenchmarkAnalyzer
 
 
 def main():
     # 1. Konfiguration laden
     import json
+
     from modul4_benchmarks import AdvancedBenchmarkAnalyzer
 
     # 1. Konfiguration sicher laden mit Fehlerfallback
@@ -28,7 +27,7 @@ def main():
         with open("config.json", encoding="utf-8") as f:
             cfg = json.load(f)
     except Exception as e:
-        print(f"⚠ Fehler beim Laden von config.json: {e}")
+        print(f"? Fehler beim Laden von config.json: {e}")
     print(
         "  Verwende Standard-Konfiguration: use_numba=True, parallel=True, cache=True"
     )
@@ -80,7 +79,7 @@ def main():
     plt.savefig("modul5_plots/gaps_scatter.png", dpi=300)
     plt.close()
 
-    print("✅ Prime-Gap-Analyse abgeschlossen.")
+    print("? Prime-Gap-Analyse abgeschlossen.")
     print("  - Daten: modul5_data/primes.csv, modul5_data/gaps.csv")
     print("  - Plots: modul5_plots/gaps_histogram.png, modul5_plots/gaps_scatter.png")
 
