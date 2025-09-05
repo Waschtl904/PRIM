@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Modul 6 – Baillie-PSW-Test
-==========================
+Modul 6 – Baillie-PSW-Test mit echtem Lucas-Selfridge-Verfahren
+===============================================================
 Dieses Skript:
 - Führt Miller-Rabin mit festen Basen durch
-- Führt einen Lucas-Test durch
+- Führt Selfridge’s Lucas-PRP durch
 - Kombiniert beides zum Baillie-PSW-Test
 - Vergleicht Performance und Zuverlässigkeit mit Forisek-Jancina
 - Exportiert Ergebnisse in modul6_data/ und modul6_plots/
@@ -19,14 +19,15 @@ import matplotlib.pyplot as plt
 from modul4_benchmarks import AdvancedBenchmarkAnalyzer
 
 
-# Miller-Rabin deterministisch für 32-bit
 def miller_rabin(n: int) -> bool:
+    n = int(n)
     bases = [2, 7, 61]
-    if n < 2:
-        return False
+    if n < 2 or n % 2 == 0:
+        return n == 2
+    # schreibe n-1 = d * 2^s
     d, s = n - 1, 0
-    while d % 2 == 0:
-        d //= 2
+    while d & 1 == 0:
+        d >>= 1
         s += 1
     for a in bases:
         if a >= n:
@@ -43,12 +44,38 @@ def miller_rabin(n: int) -> bool:
     return True
 
 
-# Lucas-Lehmer für Baillie-PSW
 def lucas_prp(n: int) -> bool:
-    # Parameter P=1, Q=(1-P^2)/4 = 0
-    # Spezialfall für Baillie-PSW-Implementierung
-    # Einfache Implementierung: Dummy True (ersetzen durch echten Lucas-Test)
-    return True
+    n = int(n)
+    # Selfridge’s Parameterwahl: suche D mit Jacobi(D|n) = -1
+    D = 5
+    sign = 1
+    while pow(D, (n - 1) // 2, n) != n - 1:
+        D = sign * (abs(D) + 2)
+        sign = -sign
+    P, Q = 1, (1 - D) // 4
+
+    # Lucas-Iteration
+    def lucas_step(n, P, Q, k):
+        # returns (U_k, V_k, Q^k)
+        if k == 0:
+            return (0, 2, 1)
+        if k == 1:
+            return (1, P, Q)
+        # rekursives Verdoppeln
+        U2j, V2j, Q2j = lucas_step(n, P, Q, k >> 1)
+        U = (U2j * V2j) % n
+        V = (V2j * V2j - 2 * Q2j) % n
+        Qk = pow(Q2j, 2, n)
+        if k & 1:
+            U1, V1, Q1 = lucas_step(n, P, Q, 1)
+            U = (U * V1 + V * U1) % n
+            V = (V * V1 + U * U1 * D) % n
+            Qk = (Qk * Q1) % n
+        return (U, V, Qk)
+
+    # Prüfe U_{n+1} mod n
+    U, V, _ = lucas_step(n, P, Q, n + 1)
+    return U == 0
 
 
 def baillie_psw(n: int) -> bool:
@@ -56,7 +83,7 @@ def baillie_psw(n: int) -> bool:
 
 
 def main():
-    # 1. Konfiguration laden
+    # Konfiguration laden
     try:
         with open("config.json", encoding="utf-8") as f:
             cfg = json.load(f)
@@ -69,7 +96,7 @@ def main():
         use_cache=cfg.get("use_cache", True),
     )
 
-    # 2. Testzahlen
+    # Testzahlen
     limit = 10**6
     test_numbers = np.concatenate(
         [
@@ -80,17 +107,18 @@ def main():
 
     results = []
     for n in test_numbers:
+        n = int(n)
         # Forisek-Jancina
-        start = time.time()
+        t0 = time.time()
         fj = analyzer.fj32_fallback(n)
-        t_fj = time.time() - start
-        # Miller-Rabin + Lucas
-        start = time.time()
+        t_fj = time.time() - t0
+        # Baillie-PSW
+        t0 = time.time()
         bp = baillie_psw(n)
-        t_bp = time.time() - start
+        t_bp = time.time() - t0
         results.append(
             {
-                "n": int(n),
+                "n": n,
                 "is_prime_fj": fj,
                 "time_fj": t_fj,
                 "is_prime_bp": bp,
@@ -101,7 +129,7 @@ def main():
     df = pd.DataFrame(results)
     df.to_csv("modul6_data/baillie_psw_results.csv", index=False)
 
-    # 3. Plots
+    # Performance-Vergleich
     plt.figure(figsize=(6, 4))
     plt.scatter(df["time_fj"], df["time_bp"], alpha=0.3)
     plt.xlabel("FJ32-C Zeit (s)")
@@ -110,8 +138,9 @@ def main():
     plt.savefig("modul6_plots/performance_compare.png", dpi=300)
     plt.close()
 
-    plt.figure(figsize=(6, 4))
+    # Fehlerraten-Analyse
     errors = df[df["is_prime_fj"] != df["is_prime_bp"]]
+    plt.figure(figsize=(6, 4))
     plt.hist(errors["n"], bins=20, color="salmon")
     plt.title("Zahlen mit unterschiedlichen Ergebnissen")
     plt.xlabel("n")
