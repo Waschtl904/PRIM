@@ -1,0 +1,6 @@
+﻿{
+    "use_full_params":  false,
+    "cache":  true,
+    "parallel":  true,
+    "use_numba":  true
+}
