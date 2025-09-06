@@ -62,15 +62,15 @@ jobs:
         run: |
           python -m sphinx -b html source build/html
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v3
+      - name: Configure Pages
+        uses: actions/configure-pages@v4
 
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           path: docs/build/html
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
