@@ -26,8 +26,12 @@ jobs:
       - name: Build C/C++ extension
         run: python setup.py build_ext --inplace
 
+      - name: Install package
+        run: pip install -e .
+
       - name: Lint with flake8
         run: flake8 .
 
       - name: Test with pytest
-        run: pytest --maxfail=1 --disable-warnings -q
+        run: pytest tests --maxfail=1 --disable-warnings -q
+
