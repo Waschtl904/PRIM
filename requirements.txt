@@ -1,2 +1,20 @@
+# Requirements
+
+Die Datei listet alle Python-Abhängigkeiten für das PRIM-Projekt auf. Versionen sind optional, können jedoch Stabilität gewährleisten.
+
+```
+# Kernfunktionen
+numpy
+scipy
+pandas
+matplotlib
+
+# Test-Framework
 pytest
+
+# Linting
 flake8
+
+# Documentation (optional)
+sphinx
+```
