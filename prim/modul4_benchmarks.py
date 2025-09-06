@@ -78,12 +78,12 @@ class AdvancedBenchmarkAnalyzer:
         # Basis Sieb-Funktion
         if self.use_parallel:
 
-            @jit(nopython=True, parallel=True, cache=self.use_cache)
+            @jit(nopython=True, parallel=True, cache=self.use_cache)  # type: ignore
             def sieve_numba_parallel(limit):
                 is_prime = np.ones(limit + 1, dtype=np.bool_)
                 is_prime[0] = is_prime[1] = False
 
-                for i in prange(2, int(limit**0.5) + 1):
+                for i in prange(2, int(limit**0.5) + 1):  # type: ignore
                     if is_prime[i]:
                         for j in range(i * i, limit + 1, i):
                             is_prime[j] = False
@@ -93,7 +93,7 @@ class AdvancedBenchmarkAnalyzer:
             self.sieve_numba = sieve_numba_parallel
         else:
 
-            @jit(nopython=True, cache=self.use_cache)
+            @jit(nopython=True, cache=self.use_cache)  # type: ignore
             def sieve_numba_serial(limit):
                 is_prime = np.ones(limit + 1, dtype=np.bool_)
                 is_prime[0] = is_prime[1] = False
@@ -108,7 +108,7 @@ class AdvancedBenchmarkAnalyzer:
             self.sieve_numba = sieve_numba_serial
 
         # Segmentiertes Sieb
-        @jit(nopython=True, cache=self.use_cache)
+        @jit(nopython=True, cache=self.use_cache)  # type: ignore
         def segmented_sieve_numba(limit, segment_size):
             # Erst kleine Primzahlen bis sqrt(limit) finden
             sqrt_limit = int(limit**0.5) + 1
@@ -439,7 +439,7 @@ class AdvancedBenchmarkAnalyzer:
                 columns="limit",
                 aggfunc="mean",
             )
-            sns.heatmap(pivot_runtime, annot=True, fmt=".4f", cmap="viridis", ax=ax1)
+            sns.heatmap(pivot_runtime, annot=True, fmt=".4", cmap="viridis", ax=ax1)
             ax1.set_title("Laufzeit-Heatmap: Segment-Größe vs. Limit")
             ax1.set_ylabel("Segment-Größe")
             ax1.set_xlabel("Limit N")
@@ -453,7 +453,7 @@ class AdvancedBenchmarkAnalyzer:
                 columns="limit",
                 aggfunc="mean",
             )
-            sns.heatmap(pivot_memory, annot=True, fmt=".2f", cmap="plasma", ax=ax2)
+            sns.heatmap(pivot_memory, annot=True, fmt=".2", cmap="plasma", ax=ax2)
             ax2.set_title("Speicher-Heatmap: Segment-Größe vs. Limit")
             ax2.set_ylabel("Segment-Größe")
             ax2.set_xlabel("Limit N")
@@ -537,7 +537,7 @@ class AdvancedBenchmarkAnalyzer:
         # Numba Parallel Analyse
         if df["parallel"].any():
             parallel_avg = df[df["parallel"]]["sieve_runtime"].mean()
-            serial_avg = df[df["parallel"] == False]["sieve_runtime"].mean()
+            serial_avg = df[df["parallel"] is False]["sieve_runtime"].mean()
             if parallel_avg < serial_avg:
                 recommendations.append(
                     "✓ **Numba Parallelisierung** verbessert die Performance signifikant\n"
@@ -587,7 +587,7 @@ def main():
     if not NUMBA_AVAILABLE:
         numba_configs = [{"use_numba": False, "parallel": False, "cache": False}]
 
-    print(f"Parameter-Grid:")
+    print("Parameter-Grid:")
     print(f"  Limits: {[f'{l:,}' for l in limits]}")
     print(f"  Segment-Größen: {[f'{s:,}' for s in segment_sizes]}")
     print(f"  Numba-Konfigurationen: {len(numba_configs)}")
