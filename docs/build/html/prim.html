@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>prim package &#8212; PRIM 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Module-Übersicht" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="prim-package">
+<h1>prim package<a class="headerlink" href="#prim-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-prim.modul1_forisek_jancina">
+<span id="prim-modul1-forisek-jancina-module"></span><h2>prim.modul1_forisek_jancina module<a class="headerlink" href="#module-prim.modul1_forisek_jancina" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-prim.modul2_simple_sieve_numba">
+<span id="prim-modul2-simple-sieve-numba-module"></span><h2>prim.modul2_simple_sieve_numba module<a class="headerlink" href="#module-prim.modul2_simple_sieve_numba" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="prim.modul2_simple_sieve_numba.simple_sieve">
+<span class="sig-prename descclassname"><span class="pre">prim.modul2_simple_sieve_numba.</span></span><span class="sig-name descname"><span class="pre">simple_sieve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#prim.modul2_simple_sieve_numba.simple_sieve" title="Link to this definition">¶</a></dt>
+<dd><p>Eratosthenes-Sieb bis ‘limit’ (Numba-optimiert).
+Gibt ein np.int32-Array aller Primzahlen &lt; limit zurück.</p>
+</dd></dl>
+
+</section>
+<section id="module-prim.modul3_hybrid">
+<span id="prim-modul3-hybrid-module"></span><h2>prim.modul3_hybrid module<a class="headerlink" href="#module-prim.modul3_hybrid" title="Link to this heading">¶</a></h2>
+<section id="modul-3-hybrid-workflow-sieb-fj32">
+<h3>Modul 3: Hybrid-Workflow “Sieb + FJ32”<a class="headerlink" href="#modul-3-hybrid-workflow-sieb-fj32" title="Link to this heading">¶</a></h3>
+<p>Kombiniert das schnelle Numba-Sieb aus Modul 2 mit dem deterministischen
+FJ32-Test aus Modul 1 für verifizierte Primzahllisten und Benchmark-Vergleiche.</p>
+<p>Autor: Sebastian
+Datum: September 2025</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="prim.modul3_hybrid.HybridPrimeAnalyzer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">prim.modul3_hybrid.</span></span><span class="sig-name descname"><span class="pre">HybridPrimeAnalyzer</span></span><a class="headerlink" href="#prim.modul3_hybrid.HybridPrimeAnalyzer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Hauptklasse für Hybrid-Workflow: Sieb + FJ32-Verifikation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul3_hybrid.HybridPrimeAnalyzer.benchmark_multiple_limits">
+<span class="sig-name descname"><span class="pre">benchmark_multiple_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#prim.modul3_hybrid.HybridPrimeAnalyzer.benchmark_multiple_limits" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul3_hybrid.HybridPrimeAnalyzer.create_performance_plot">
+<span class="sig-name descname"><span class="pre">create_performance_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#prim.modul3_hybrid.HybridPrimeAnalyzer.create_performance_plot" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul3_hybrid.HybridPrimeAnalyzer.get_primality_test">
+<span class="sig-name descname"><span class="pre">get_primality_test</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#prim.modul3_hybrid.HybridPrimeAnalyzer.get_primality_test" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul3_hybrid.HybridPrimeAnalyzer.get_sieve_function">
+<span class="sig-name descname"><span class="pre">get_sieve_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#prim.modul3_hybrid.HybridPrimeAnalyzer.get_sieve_function" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul3_hybrid.HybridPrimeAnalyzer.run_fj32_only">
+<span class="sig-name descname"><span class="pre">run_fj32_only</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#prim.modul3_hybrid.HybridPrimeAnalyzer.run_fj32_only" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul3_hybrid.HybridPrimeAnalyzer.run_fj32_verification">
+<span class="sig-name descname"><span class="pre">run_fj32_verification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#prim.modul3_hybrid.HybridPrimeAnalyzer.run_fj32_verification" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul3_hybrid.HybridPrimeAnalyzer.run_hybrid_workflow">
+<span class="sig-name descname"><span class="pre">run_hybrid_workflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#prim.modul3_hybrid.HybridPrimeAnalyzer.run_hybrid_workflow" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul3_hybrid.HybridPrimeAnalyzer.run_sieve_only">
+<span class="sig-name descname"><span class="pre">run_sieve_only</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#prim.modul3_hybrid.HybridPrimeAnalyzer.run_sieve_only" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="prim.modul3_hybrid.fallback_is_prime_fj32">
+<span class="sig-prename descclassname"><span class="pre">prim.modul3_hybrid.</span></span><span class="sig-name descname"><span class="pre">fallback_is_prime_fj32</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#prim.modul3_hybrid.fallback_is_prime_fj32" title="Link to this definition">¶</a></dt>
+<dd><p>Fallback-Implementierung eines einfachen Primzahltests falls FJ32 nicht verfügbar</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="prim.modul3_hybrid.fallback_simple_sieve">
+<span class="sig-prename descclassname"><span class="pre">prim.modul3_hybrid.</span></span><span class="sig-name descname"><span class="pre">fallback_simple_sieve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#prim.modul3_hybrid.fallback_simple_sieve" title="Link to this definition">¶</a></dt>
+<dd><p>Fallback-Implementierung des Eratosthenes-Siebs falls Numba-Version nicht verfügbar</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="prim.modul3_hybrid.main">
+<span class="sig-prename descclassname"><span class="pre">prim.modul3_hybrid.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#prim.modul3_hybrid.main" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-prim.modul4_benchmarks">
+<span id="prim-modul4-benchmarks-module"></span><h2>prim.modul4_benchmarks module<a class="headerlink" href="#module-prim.modul4_benchmarks" title="Link to this heading">¶</a></h2>
+<section id="modul-4-erweiterte-benchmarks-optimierung">
+<h3>Modul 4 - Erweiterte Benchmarks &amp; Optimierung<a class="headerlink" href="#modul-4-erweiterte-benchmarks-optimierung" title="Link to this heading">¶</a></h3>
+<p>Systematische Performance- und Speicheranalyse über Parameter-Grid:
+- Obergrenzen N = 10^6, 10^7, 10^8
+- Segment-Größen für segmentiertes Sieb
+- Numba-Flags (parallel=True, cache=True)
+- Metriken: Laufzeit und Speicherverbrauch</p>
+<p>Autor: Sebastian
+Datum: September 2025</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">prim.modul4_benchmarks.</span></span><span class="sig-name descname"><span class="pre">AdvancedBenchmarkAnalyzer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_numba</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_parallel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Erweiterte Benchmark-Klasse für Modul 4
+Erweitert die HybridPrimeAnalyzer um Speicher-Tracking und Parameter-Grid-Analyse</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.benchmark_primality_tests">
+<span class="sig-name descname"><span class="pre">benchmark_primality_tests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_numbers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.benchmark_primality_tests" title="Link to this definition">¶</a></dt>
+<dd><p>Benchmarkt Primzahltests</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.benchmark_sieve_methods">
+<span class="sig-name descname"><span class="pre">benchmark_sieve_methods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_sizes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.benchmark_sieve_methods" title="Link to this definition">¶</a></dt>
+<dd><p>Benchmarkt verschiedene Sieb-Methoden</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.create_visualizations">
+<span class="sig-name descname"><span class="pre">create_visualizations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.create_visualizations" title="Link to this definition">¶</a></dt>
+<dd><p>Erstellt verschiedene Visualisierungen der Benchmark-Ergebnisse</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.export_results">
+<span class="sig-name descname"><span class="pre">export_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename_base</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'modul4_results'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.export_results" title="Link to this definition">¶</a></dt>
+<dd><p>Exportiert Ergebnisse in verschiedene Formate</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.fj32_fallback">
+<span class="sig-name descname"><span class="pre">fj32_fallback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.fj32_fallback" title="Link to this definition">¶</a></dt>
+<dd><p>Fallback-Implementierung von Forisek-Jancina-32</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.measure_with_memory">
+<span class="sig-name descname"><span class="pre">measure_with_memory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.measure_with_memory" title="Link to this definition">¶</a></dt>
+<dd><p>Führt Funktion aus und misst Zeit + Speicherverbrauch</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.run_parameter_grid_benchmark">
+<span class="sig-name descname"><span class="pre">run_parameter_grid_benchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_sizes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numba_configs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#prim.modul4_benchmarks.AdvancedBenchmarkAnalyzer.run_parameter_grid_benchmark" title="Link to this definition">¶</a></dt>
+<dd><p>Führt vollständigen Parameter-Grid-Benchmark durch</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="prim.modul4_benchmarks.main">
+<span class="sig-prename descclassname"><span class="pre">prim.modul4_benchmarks.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#prim.modul4_benchmarks.main" title="Link to this definition">¶</a></dt>
+<dd><p>Hauptfunktion für Modul 4 Benchmarks</p>
+</dd></dl>
+
+</section>
+<section id="module-prim.modul5_prime_gap">
+<span id="prim-modul5-prime-gap-module"></span><h2>prim.modul5_prime_gap module<a class="headerlink" href="#module-prim.modul5_prime_gap" title="Link to this heading">¶</a></h2>
+<section id="modul-5-prime-gap-analyse">
+<h3>Modul 5 – Prime-Gap-Analyse<a class="headerlink" href="#modul-5-prime-gap-analyse" title="Link to this heading">¶</a></h3>
+<p>Dieses Skript:
+- Erzeugt Primzahlliste bis N
+- Berechnet Abstaende benachbarter Primzahlen (Prime Gaps)
+- Visualisiert Histogramm und Verteilung
+- Exportiert Ergebnisse in modul5_data/ und modul5_plots/</p>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="prim.modul5_prime_gap.main">
+<span class="sig-prename descclassname"><span class="pre">prim.modul5_prime_gap.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#prim.modul5_prime_gap.main" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-prim.modul6_baillie_psw">
+<span id="prim-modul6-baillie-psw-module"></span><h2>prim.modul6_baillie_psw module<a class="headerlink" href="#module-prim.modul6_baillie_psw" title="Link to this heading">¶</a></h2>
+<section id="modul-6-baillie-psw-test-mit-echtem-lucas-selfridge-verfahren">
+<h3>Modul 6 – Baillie-PSW-Test mit echtem Lucas-Selfridge-Verfahren<a class="headerlink" href="#modul-6-baillie-psw-test-mit-echtem-lucas-selfridge-verfahren" title="Link to this heading">¶</a></h3>
+<p>Dieses Skript:
+- Führt Miller-Rabin mit festen Basen durch
+- Führt Selfridge’s Lucas-PRP durch
+- Kombiniert beides zum Baillie-PSW-Test
+- Vergleicht Performance und Zuverlässigkeit mit Forisek-Jancina
+- Exportiert Ergebnisse in modul6_data/ und modul6_plots/</p>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="prim.modul6_baillie_psw.baillie_psw">
+<span class="sig-prename descclassname"><span class="pre">prim.modul6_baillie_psw.</span></span><span class="sig-name descname"><span class="pre">baillie_psw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#prim.modul6_baillie_psw.baillie_psw" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="prim.modul6_baillie_psw.lucas_prp">
+<span class="sig-prename descclassname"><span class="pre">prim.modul6_baillie_psw.</span></span><span class="sig-name descname"><span class="pre">lucas_prp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#prim.modul6_baillie_psw.lucas_prp" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="prim.modul6_baillie_psw.main">
+<span class="sig-prename descclassname"><span class="pre">prim.modul6_baillie_psw.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#prim.modul6_baillie_psw.main" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="prim.modul6_baillie_psw.miller_rabin">
+<span class="sig-prename descclassname"><span class="pre">prim.modul6_baillie_psw.</span></span><span class="sig-name descname"><span class="pre">miller_rabin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#prim.modul6_baillie_psw.miller_rabin" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-prim">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prim" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">PRIM</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Inhalt:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Module-Übersicht</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">prim package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Module-Übersicht</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">Module-Übersicht</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Waschtl.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/prim.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

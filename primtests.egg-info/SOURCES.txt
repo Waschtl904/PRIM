@@ -1,3 +1,4 @@
+setup.cfg
 setup.py
 prim/__init__.py
 prim/modul1_forisek_jancina.py
