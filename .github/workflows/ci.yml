@@ -14,18 +14,29 @@ jobs:
         python-version: [3.9, 3.10, 3.11]
     steps:
       - uses: actions/checkout@v3
+
+      - name: Show files
+        run: |
+          pwd
+          ls -R .
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -e .
           pip install pytest pandas
+
       - name: Run unit tests
         run: pytest --maxfail=1 --disable-warnings -q
+
       - name: Run Modul 6 analysis
-        run: python modul6_baillie_psw.py
+        run: python prim/modul6_baillie_psw.py
+
       - name: Validate Modul 6 outputs
         run: pytest tests/test_modul6_validation.py --maxfail=1 --disable-warnings -q
+
