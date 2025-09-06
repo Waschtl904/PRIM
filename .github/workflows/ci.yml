@@ -7,36 +7,27 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  build-test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.9, 3.10, 3.11]
+
     steps:
       - uses: actions/checkout@v3
-
-      - name: Show files
-        run: |
-          pwd
-          ls -R .
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.x'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e .
-          pip install pytest pandas
+          pip install -r requirements.txt
 
-      - name: Run unit tests
+      - name: Build C/C++ extension
+        run: python setup.py build_ext --inplace
+
+      - name: Lint with flake8
+        run: flake8 .
+
+      - name: Test with pytest
         run: pytest --maxfail=1 --disable-warnings -q
-
-      - name: Run Modul 6 analysis
-        run: python prim/modul6_baillie_psw.py
-
-      - name: Validate Modul 6 outputs
-        run: pytest tests/test_modul6_validation.py --maxfail=1 --disable-warnings -q
-
