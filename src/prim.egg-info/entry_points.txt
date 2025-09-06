@@ -1,0 +1,4 @@
+[console_scripts]
+prim = prim.cli.main:main
+prim-benchmark = prim.analysis.benchmarks:cli_main
+prim-gap = prim.analysis.prime_gap:cli_main

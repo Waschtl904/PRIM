@@ -1,0 +1,116 @@
+Metadata-Version: 2.4
+Name: prim
+Version: 0.1.0.post11+dirty
+Summary: Modulares Framework für Primzahltests und -analysen
+Author-email: Sebastian Waschtl <your.email@example.com>
+Project-URL: Homepage, https://github.com/Waschtl904/PRIM
+Project-URL: Repository, https://github.com/Waschtl904/PRIM.git
+Project-URL: Documentation, https://waschtl904.github.io/PRIM/
+Project-URL: Changelog, https://github.com/Waschtl904/PRIM/blob/main/CHANGELOG.md
+Project-URL: Bug Tracker, https://github.com/Waschtl904/PRIM/issues
+Keywords: primes,mathematics,algorithms,cryptography,number-theory
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Cython
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Security :: Cryptography
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: scipy>=1.7.0
+Requires-Dist: pandas>=1.3.0
+Requires-Dist: matplotlib>=3.5.0
+Requires-Dist: numba>=0.56.0
+Requires-Dist: seaborn>=0.11.0
+Requires-Dist: tqdm>=4.62.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: pytest-xdist>=3.0.0; extra == "dev"
+Requires-Dist: flake8>=5.0.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: pre-commit>=2.20.0; extra == "dev"
+Requires-Dist: twine>=4.0.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=5.0.0; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=1.2.0; extra == "docs"
+Requires-Dist: myst-parser>=0.18.0; extra == "docs"
+Requires-Dist: sphinx-autodoc-typehints>=1.19.0; extra == "docs"
+Requires-Dist: nbsphinx>=0.8.9; extra == "docs"
+Provides-Extra: benchmarks
+Requires-Dist: memory-profiler>=0.60.0; extra == "benchmarks"
+Requires-Dist: psutil>=5.9.0; extra == "benchmarks"
+Requires-Dist: openpyxl>=3.0.10; extra == "benchmarks"
+Provides-Extra: jupyter
+Requires-Dist: jupyter>=1.0.0; extra == "jupyter"
+Requires-Dist: ipywidgets>=8.0.0; extra == "jupyter"
+Requires-Dist: plotly>=5.0.0; extra == "jupyter"
+
+PRIM
+Modulares Repository für Primzahltests
+
+Übersicht
+Dieses Projekt enthält verschiedene Module zur Analyse und Implementierung von Primzahltests:
+
+modul2_wheel_sieve/ – Rad-Sieb-Implementierung
+
+modul3_hybrid_performance/ – Hybrid-Algorithmen und Benchmarks
+
+modul5_data/ & modul5_plots/ – Prime-Gap-Analyse
+
+modul6_data/ & modul6_plots/ – Code-Qualität und Linting
+
+prim/ – Python-Paket mit Kernfunktionen
+
+_fj32_c.c, primetest.cpp – C/C++ Performance-Module
+
+Installation
+Repository klonen:
+
+bash
+git clone https://github.com/Waschtl904/PRIM.git
+cd PRIM
+Python-Umgebung erstellen und aktivieren:
+
+bash
+python3 -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\\Scripts\\activate   # Windows
+Abhängigkeiten installieren:
+
+bash
+pip install -r requirements.txt
+Nutzung
+Python-Paket
+bash
+python -m prim --help
+C/C++-Module
+bash
+gcc -O3 _fj32_c.c -o fj32_c
+./fj32_c 1000000
+Testen
+Python-Tests:
+
+bash
+pytest tests/
+Benchmarks:
+
+bash
+cd modul3_hybrid_performance
+bash run_benchmarks.sh
+Beitragende
+Lesen Sie die Anleitung in CONTRIBUTING.md, um beizutragen.
+
+Lizenz
+MIT License

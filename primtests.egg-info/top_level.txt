@@ -1,3 +1,0 @@
-modul4_benchmarks
-modul5_prime_gap
-prim
