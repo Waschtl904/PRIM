@@ -1,5 +1,10 @@
 ﻿name: CI
 
+permissions:
+  contents: read      # Für checkout
+  pages: write        # Für GitHub Pages deploy
+  id-token: write     # Für OIDC Token
+
 on:
   push:
     branches: [ main ]
