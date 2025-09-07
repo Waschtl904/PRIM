@@ -49,7 +49,7 @@ class AdvancedBenchmarkAnalyzer:
         self.use_numba = use_numba and NUMBA_AVAILABLE
         self.use_parallel = use_parallel
         self.use_cache = use_cache
-        self.results = []
+        self.results: List[Any] = []
 
         # Verzeichnisse sicherstellen
         Path("data").mkdir(exist_ok=True)
@@ -61,7 +61,7 @@ class AdvancedBenchmarkAnalyzer:
             sys.path.insert(0, os.getcwd())
             import primetest  # type: ignore
 
-            self.fj32_c = primetest.fj32_c
+            self.fj32_c = primetest.fj32_c  # type: ignore[attr-defined]
             self.fj32_available = True
             print("✓ primetest.pyd (FJ32-C) erfolgreich geladen")
         except ImportError as e:
