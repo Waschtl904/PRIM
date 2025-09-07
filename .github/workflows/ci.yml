@@ -1,11 +1,12 @@
+---
 name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: ["main","develop"]
     tags: [ 'v*' ]
   pull_request:
-    branches: [ main, develop ]
+    branches: ["main","develop"]
   workflow_dispatch:
 
 env:
@@ -140,7 +141,7 @@ jobs:
         python -m prim.analysis.benchmarks --quick
         
     - name: Upload benchmark results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3.1.2
       with:
         name: benchmark-results
         path: data/benchmarks/
@@ -169,7 +170,7 @@ jobs:
         make html
         
     - name: Upload documentation artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3.1.2
       with:
         name: documentation
         path: docs/build/html/
@@ -211,7 +212,7 @@ jobs:
         twine check dist/*
         
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3.1.2
       with:
         name: dist-packages
         path: dist/
@@ -258,7 +259,7 @@ jobs:
         path: dist/
         
     - name: Create GitHub Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         files: dist/*
         generate_release_notes: true
