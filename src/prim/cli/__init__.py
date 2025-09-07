@@ -2,4 +2,4 @@
 Command-line interface.
 """
 
-__all__ = []
+__all__: list[str] = ["foo", "bar"]
