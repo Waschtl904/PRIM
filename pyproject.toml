@@ -28,7 +28,7 @@ classifiers = [
   "Topic :: Security :: Cryptography",
   "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 dependencies = [
   "numpy>=1.21.0",
   "scipy>=1.7.0",
@@ -180,10 +180,10 @@ disallow_untyped_defs = false
 disallow_incomplete_defs = false
 check_untyped_defs = false
 warn_unused_ignores = false
+exclude = "native/wheel_sieve/setup\\.py"
 
 # Dateien ausschließen, um Konflikt zwischen
 # native/wheel_sieve/setup.py und modul2_wheel_sieve/setup.py zu vermeiden
-exclude = 'native/wheel_sieve/setup.py'
 
 [[tool.mypy.overrides]]
 module = [
