@@ -1,11 +1,8 @@
+# -*- coding: utf-8 -*-
 """
-Analysis and benchmarking tools.
+Analyse-Module fuer Primzahltests
 """
 
-from .benchmarks import run_benchmark
 from .prime_gap import analyze_prime_gaps
 
-__all__ = [
-    "run_benchmark",
-    "analyze_prime_gaps",
-]
+__all__ = ["analyze_prime_gaps"]

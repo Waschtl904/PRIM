@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Modul 5 – Prime-Gap-Analyse
+Modul 5 - Prime-Gap-Analyse
 ===========================
 
 Dieses Skript:
@@ -16,6 +16,18 @@ import numpy as np
 import pandas as pd
 
 
+def analyze_prime_gaps(primes):
+    """Analyze gaps between consecutive primes."""
+    if len(primes) < 2:
+        return []
+
+    gaps = []
+    for i in range(1, len(primes)):
+        gaps.append(primes[i] - primes[i - 1])
+
+    return gaps
+
+
 def main():
     # 1. Konfiguration laden
     import json
@@ -27,11 +39,11 @@ def main():
         with open("config.json", encoding="utf-8") as f:
             cfg = json.load(f)
     except Exception as e:
-        print(f"? Fehler beim Laden von config.json: {e}")
-    print(
-        "  Verwende Standard-Konfiguration: use_numba=True, parallel=True, cache=True"
-    )
-    cfg = {"use_numba": True, "parallel": True, "cache": True}
+        print(f"Fehler beim Laden von config.json: {e}")
+        print(
+            "Verwende Standard-Konfiguration: use_numba=True, parallel=True, cache=True"
+        )
+        cfg = {"use_numba": True, "parallel": True, "cache": True}
 
     analyzer = AdvancedBenchmarkAnalyzer(
         use_numba=cfg.get("use_numba", True),
@@ -79,7 +91,7 @@ def main():
     plt.savefig("modul5_plots/gaps_scatter.png", dpi=300)
     plt.close()
 
-    print("? Prime-Gap-Analyse abgeschlossen.")
+    print("Prime-Gap-Analyse abgeschlossen.")
     print("  - Daten: modul5_data/primes.csv, modul5_data/gaps.csv")
     print("  - Plots: modul5_plots/gaps_histogram.png, modul5_plots/gaps_scatter.png")
 
