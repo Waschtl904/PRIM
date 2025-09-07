@@ -141,7 +141,7 @@ jobs:
         python -m prim.analysis.benchmarks --quick
         
     - name: Upload benchmark results
-      uses: actions/upload-artifact@v3.1.2
+      uses: actions/upload-artifact@v4
       with:
         name: benchmark-results
         path: data/benchmarks/
@@ -170,7 +170,7 @@ jobs:
         make html
         
     - name: Upload documentation artifacts
-      uses: actions/upload-artifact@v3.1.2
+      uses: actions/upload-artifact@v4
       with:
         name: documentation
         path: docs/build/html/
@@ -212,7 +212,7 @@ jobs:
         twine check dist/*
         
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3.1.2
+      uses: actions/upload-artifact@v4
       with:
         name: dist-packages
         path: dist/
