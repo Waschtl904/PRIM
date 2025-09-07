@@ -1,4 +1,8 @@
 ---
+permissions:
+  contents: read      # Erlaubt Auschecken des Codes
+  pages: write        # Erlaubt das Pushen auf den gh-pages-Branch
+  id-token: write     # Notwendig für OIDC, falls verwendet
 name: CI/CD Pipeline
 
 on:
@@ -181,8 +185,8 @@ jobs:
       if: github.ref == 'refs/heads/main'
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: docs/build/html/
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         cname: waschtl904.github.io
 
   # Package Build & Distribution
