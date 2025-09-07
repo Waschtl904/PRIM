@@ -77,16 +77,10 @@ prim-gap = "prim.analysis.prime_gap:cli_main"
 Homepage = "https://github.com/Waschtl904/PRIM"
 Repository = "https://github.com/Waschtl904/PRIM.git"
 Documentation = "https://waschtl904.github.io/PRIM/"
-Changelog = "https://github.com/Waschtl904/PRIM/blob/main/CHANGELOG.md"
-"Bug Tracker" = "https://github.com/Waschtl904/PRIM/issues"
 
 [tool.setuptools]
-package-dir = { "": "src" }
+package-dir = { "" = "src" }
 zip-safe = false
-
-[tool.setuptools.packages.find]
-where = ["src"]
-include = ["prim*"]
 
 [tool.setuptools.package-data]
 prim = ["*.pyx", "*.pxd", "*.c", "*.h"]
@@ -186,6 +180,10 @@ disallow_untyped_defs = false
 disallow_incomplete_defs = false
 check_untyped_defs = false
 warn_unused_ignores = false
+
+# Dateien ausschließen, um Konflikt zwischen
+# native/wheel_sieve/setup.py und modul2_wheel_sieve/setup.py zu vermeiden
+exclude = 'native/wheel_sieve/setup.py'
 
 [[tool.mypy.overrides]]
 module = [
