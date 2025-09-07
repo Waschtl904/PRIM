@@ -13,3 +13,7 @@ def is_prime_forisek_jancina(n: int) -> bool:
         if n % p == 0:
             return False
     return True
+
+
+# Alias für Tests
+forisek_jancina_test = is_prime_forisek_jancina  # noqa: F401
