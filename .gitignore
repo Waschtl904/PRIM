@@ -4,3 +4,27 @@ __pycache__/
 data/
 plots/
 .ipynb_checkpoints/
+
+# Editor
+.vscode/
+
+# Build artifacts - aber NICHT die Source-C-Dateien!
+build/
+*.pyd
+src/prim/*.pyd
+*.egg-info/
+
+# Kompilierte Binaries und Object-Dateien (aber nicht Source-Code)
+*.dll
+*.so
+*.dylib
+*.exe
+*.obj
+*.lib
+*.exp
+*.def
+*.ilk
+*.pdb
+
+# Cython-generierte C-Dateien (optional - nur die auto-generierten)
+# prim/optimized_cython.c  # Falls Cython das generiert
