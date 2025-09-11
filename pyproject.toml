@@ -37,6 +37,7 @@ dependencies = [
   "numba>=0.56.0",
   "seaborn>=0.11.0",
   "tqdm>=4.62.0",
+  "cython>=0.29",
 ]
 
 [project.optional-dependencies]
@@ -86,7 +87,7 @@ zip-safe = false
 prim = ["*.pyx", "*.pxd", "*.c", "*.h"]
 
 [tool.setuptools_scm]
-write_to = "src/prim/_version.py"
+write_to = "src/prim_src/_version.py"
 version_scheme = "post-release"
 local_scheme = "dirty-tag"
 
@@ -113,11 +114,11 @@ filterwarnings = [
 ]
 
 [tool.coverage.run]
-source = ["src/prim"]
+source = ["src/prim_src", "prim"]
 omit = [
   "*/tests/*",
   "*/test_*.py",
-  "src/prim/_version.py",
+  "src/prim_src/_version.py",
 ]
 
 [tool.coverage.report]
@@ -167,6 +168,7 @@ exclude = [
   ".venv",
   ".tox",
   "docs",
+  "src/prim",
 ]
 per-file-ignores = [
   "__init__.py:F401",
@@ -180,10 +182,11 @@ disallow_untyped_defs = false
 disallow_incomplete_defs = false
 check_untyped_defs = false
 warn_unused_ignores = false
-exclude = "native/wheel_sieve/setup\\.py"
-
-# Dateien ausschließen, um Konflikt zwischen
-# native/wheel_sieve/setup.py und modul2_wheel_sieve/setup.py zu vermeiden
+exclude = [
+  "native/wheel_sieve/setup\\.py",
+  "src/prim",
+]
+files = ["prim", "benchmarks", "src/prim_src"]
 
 [[tool.mypy.overrides]]
 module = [
