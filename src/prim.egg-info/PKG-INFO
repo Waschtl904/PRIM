@@ -1,20 +1,17 @@
 Metadata-Version: 2.4
 Name: prim
-Version: 0.1.0.post11+dirty
+Version: 0.1.0
 Summary: Modulares Framework für Primzahltests und -analysen
 Author-email: Sebastian Waschtl <your.email@example.com>
 Project-URL: Homepage, https://github.com/Waschtl904/PRIM
 Project-URL: Repository, https://github.com/Waschtl904/PRIM.git
 Project-URL: Documentation, https://waschtl904.github.io/PRIM/
-Project-URL: Changelog, https://github.com/Waschtl904/PRIM/blob/main/CHANGELOG.md
-Project-URL: Bug Tracker, https://github.com/Waschtl904/PRIM/issues
 Keywords: primes,mathematics,algorithms,cryptography,number-theory
 Classifier: Development Status :: 4 - Beta
 Classifier: Intended Audience :: Science/Research
 Classifier: Intended Audience :: Developers
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Programming Language :: Python :: 3
-Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
 Classifier: Programming Language :: Python :: 3.11
@@ -33,6 +30,7 @@ Requires-Dist: matplotlib>=3.5.0
 Requires-Dist: numba>=0.56.0
 Requires-Dist: seaborn>=0.11.0
 Requires-Dist: tqdm>=4.62.0
+Requires-Dist: cython>=0.29
 Provides-Extra: dev
 Requires-Dist: pytest>=7.0.0; extra == "dev"
 Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
