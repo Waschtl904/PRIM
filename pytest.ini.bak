@@ -1,4 +1,4 @@
-[pytest]
+﻿[pytest]
 testpaths = tests
 addopts = --cov=prim --cov-report=html --cov-report=term-missing
-pythonpath = src
+python_paths = src
