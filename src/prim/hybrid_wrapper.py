@@ -4,6 +4,7 @@ __all__ = ["is_prime", "batch_primality_test"]
 
 is_prime = forisek_jancina_test
 
+
 def batch_primality_test(numbers):
     """
     Vereinfacht: Für eine Liste von Zahlen forisek_jancina_test anwenden.

@@ -1,10 +1,10 @@
-﻿from setuptools import setup, find_packages
+﻿#!/usr/bin/env python3
+"""
+Minimal setup.py for backwards compatibility.
+Actual configuration is in pyproject.toml.
+"""
 
-setup(
-    name="prim",
-    use_scm_version=False,
-    version="0.1.0",
-    packages=find_packages(where="src"),
-    package_dir={"": "src"},
-    python_requires=">=3.8",
-)
+from setuptools import setup
+
+# All configuration is in pyproject.toml
+setup()

@@ -1,68 +1,44 @@
 {
   "Small (10^5)": {
     "Naive Trial Division": {
-      "time_seconds": 2.572999947005883e-05,
-      "numbers_per_second": 1943256.9385857699
+      "time_seconds": 1.903000011225231e-05,
+      "numbers_per_second": 2627430.357596683
     },
     "Miller-Rabin (Cython)": {
-      "time_seconds": 1.3079999189358204e-05,
-      "numbers_per_second": 3822630.206329038
+      "time_seconds": 5.466000002343208e-05,
+      "numbers_per_second": 914745.7003030664
     },
     "Forisek-Jancina (C)": {
-      "time_seconds": 8.43500005430542e-05,
-      "numbers_per_second": 592768.2238066951
-    },
-    "Baillie-PSW (C)": {
-      "time_seconds": 0.00010731000074883922,
-      "numbers_per_second": 465939.797326307
-    },
-    "Hybrid Test": {
-      "time_seconds": 9.53099995967932e-05,
-      "numbers_per_second": 524603.9262566768
+      "time_seconds": 4.181999993306818e-05,
+      "numbers_per_second": 1195600.1932095576
     }
   },
   "Medium (10^7)": {
     "Naive Trial Division": {
-      "time_seconds": 1.2310000602155925e-05,
-      "numbers_per_second": 4061738.2253615162
+      "time_seconds": 1.7010000010486693e-05,
+      "numbers_per_second": 2939447.3820796544
     },
     "Miller-Rabin (Cython)": {
-      "time_seconds": 3.8169999606907366e-05,
-      "numbers_per_second": 1309929.2773100222
+      "time_seconds": 4.602999997587176e-05,
+      "numbers_per_second": 1086248.0996352215
     },
     "Forisek-Jancina (C)": {
-      "time_seconds": 8.567000040784478e-05,
-      "numbers_per_second": 583634.8752418299
-    },
-    "Baillie-PSW (C)": {
-      "time_seconds": 0.00010821999894687906,
-      "numbers_per_second": 462021.81192538206
-    },
-    "Hybrid Test": {
-      "time_seconds": 0.00010051999997813254,
-      "numbers_per_second": 497413.4501678986
+      "time_seconds": 4.1760000021895395e-05,
+      "numbers_per_second": 1197318.0070350633
     }
   },
   "Large (10^9)": {
     "Naive Trial Division": {
-      "time_seconds": 1.1800002539530396e-06,
-      "numbers_per_second": 847457.4447335644
+      "time_seconds": 8.200000593205914e-07,
+      "numbers_per_second": 1219512.1068997812
     },
     "Miller-Rabin (Cython)": {
-      "time_seconds": 1.2100004823878408e-06,
-      "numbers_per_second": 826445.9515144809
+      "time_seconds": 5.669000001944369e-05,
+      "numbers_per_second": 17639.795372323468
     },
     "Forisek-Jancina (C)": {
-      "time_seconds": 3.019999712705612e-06,
-      "numbers_per_second": 331125.8593147686
-    },
-    "Baillie-PSW (C)": {
-      "time_seconds": 4.2799991206265984e-06,
-      "numbers_per_second": 233644.90781801808
-    },
-    "Hybrid Test": {
-      "time_seconds": 3.479998849797994e-06,
-      "numbers_per_second": 287356.4168154963
+      "time_seconds": 2.9199998607509768e-06,
+      "numbers_per_second": 342465.76975617255
     }
   }
 }

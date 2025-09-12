@@ -15,7 +15,6 @@ import json
 import time
 
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 
 from prim.analysis.benchmarks import AdvancedBenchmarkAnalyzer
@@ -33,7 +32,6 @@ def miller_rabin(n: int) -> bool:
     bases = [2, 7, 61]
     if n < 2 or n % 2 == 0:
         return n == 2
-    # schreibe n-1 = d * 2^s
     d, s = n - 1, 0
     while d & 1 == 0:
         d >>= 1
@@ -55,21 +53,17 @@ def miller_rabin(n: int) -> bool:
 
 def lucas_prp(n: int) -> bool:
     n = int(n)
-    # Selfridge’s Parameterwahl: suche D mit Jacobi(D|n) = -1
-    D = 5
-    sign = 1
+    D, sign = 5, 1
     while pow(D, (n - 1) // 2, n) != n - 1:
         D = sign * (abs(D) + 2)
         sign = -sign
     P, Q = 1, (1 - D) // 4
 
-    # Lucas-Iteration
     def lucas_step(n, P, Q, k):
-        # returns (U_k, V_k, Q^k)
         if k == 0:
-            return (0, 2, 1)
+            return 0, 2, 1
         if k == 1:
-            return (1, P, Q)
+            return 1, P, Q
         U2j, V2j, Q2j = lucas_step(n, P, Q, k >> 1)
         U = (U2j * V2j) % n
         V = (V2j * V2j - 2 * Q2j) % n
@@ -79,10 +73,10 @@ def lucas_prp(n: int) -> bool:
             U = (U * V1 + V * U1) % n
             V = (V * V1 + U * U1 * D) % n
             Qk = (Qk * Q1) % n
-        return (U, V, Qk)
+        return U, V, Qk
 
     U, V, _ = lucas_step(n, P, Q, n + 1)
-    return U == 0  # liefert bool
+    return U == 0
 
 
 def baillie_psw(n: int) -> bool:
@@ -96,11 +90,10 @@ def baillie_psw(n: int) -> bool:
 
 
 def main():
-    # Konfiguration laden
     try:
         with open("config.json", encoding="utf-8") as f:
             cfg = json.load(f)
-    except BaseException:
+    except Exception:
         cfg = {"use_numba": True, "use_parallel": True, "use_cache": True}
 
     analyzer = AdvancedBenchmarkAnalyzer(
@@ -109,26 +102,18 @@ def main():
         use_cache=cfg.get("use_cache", True),
     )
 
-    # Testzahlen
-    limit = 10**6
-    if HAVE_NUMBA:
-        primes = simple_sieve(limit)
-        print("✓ simple_sieve (Numba) geladen")
-    else:
-        print("⚠ numba nicht installiert, verwende Python-Sieb")
-        primes = analyzer.sieve_simple(limit)  # o. ä.
+    test_numbers = list(range(2, 102))  # Beispieltestzahlen
 
     results = []
     for n in test_numbers:
-        n = int(n)
-        # Forisek-Jancina
         t0 = time.time()
         fj = analyzer.fj32_fallback(n)
         t_fj = time.time() - t0
-        # Baillie-PSW
+
         t0 = time.time()
         bp = baillie_psw(n)
         t_bp = time.time() - t0
+
         results.append(
             {
                 "n": n,
@@ -140,9 +125,7 @@ def main():
         )
 
     df = pd.DataFrame(results)
-    df.to_csv("modul6_data/baillie_psw_results.csv", index=False)
 
-    # Performance-Vergleich
     plt.figure(figsize=(6, 4))
     plt.scatter(df["time_fj"], df["time_bp"], alpha=0.3)
     plt.xlabel("FJ32-C Zeit (s)")
@@ -151,20 +134,22 @@ def main():
     plt.savefig("modul6_plots/performance_compare.png", dpi=300)
     plt.close()
 
-    # Fehlerraten-Analyse
     errors = df[df["is_prime_fj"] != df["is_prime_bp"]]
     plt.figure(figsize=(6, 4))
     plt.hist(errors["n"], bins=20, color="salmon")
-    plt.title("Zahlen mit unterschiedlichen Ergebnissen")
     plt.xlabel("n")
     plt.ylabel("Anzahl")
+    plt.title("Zahlen mit unterschiedlichen Ergebnissen")
     plt.savefig("modul6_plots/discrepancies.png", dpi=300)
     plt.close()
+
+    df.to_csv("modul6_data/baillie_psw_results.csv", index=False)
 
     print("✅ Baillie-PSW-Analyse abgeschlossen.")
     print("  Ergebnisse: modul6_data/baillie_psw_results.csv")
     print(
-        "  Plots: modul6_plots/performance_compare.png, modul6_plots/discrepancies.png"
+        "  Plots: modul6_plots/performance_compare.png,"
+        " modul6_plots/discrepancies.png"
     )
 
 

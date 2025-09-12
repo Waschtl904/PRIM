@@ -1,0 +1,33 @@
+[flake8]
+max-line-length = 88
+max-complexity = 10
+extend-ignore = 
+    E203,  # whitespace before ':'
+    E501,  # line too long (handled by black)
+    W503,  # line break before binary operator
+    F541   # f-string is missing placeholders
+
+exclude =
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    build,
+    dist,
+    *.egg-info,
+    .coverage,
+    htmlcov,
+    .pytest_cache,
+    docs/_build,
+    # Legacy files (if they still exist)
+    modul*_*.py
+
+per-file-ignores =
+    # Tests can use assertions and fixtures
+    tests/*.py:S101,F401,F811
+    # __init__.py files can have unused imports for re-export
+    __init__.py:F401
+    # Benchmarks might have complex code and undefined names from C extensions
+    benchmarks/*.py:C901,F821
+    # Analysis modules may have undefined names from optional dependencies
+    src/prim/analysis/*.py:F821

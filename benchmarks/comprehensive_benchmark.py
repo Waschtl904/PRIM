@@ -1,15 +1,17 @@
-import sys
-import os
-import time
-import json
-from pathlib import Path
-from typing import List, Callable
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Comprehensive Benchmark Suite für PRIM
+=====================================
+Dieses Skript:
+- Führt Naive Trial Division, Miller-Rabin, Forisek-Jancina und Baillie-PSW Benchmarks durch
+- Speichert Ergebnisse in benchmarks/benchmark_results.json
+"""
 
-# Füge src zum Python-Path hinzu
-project_root = Path(__file__).parent.parent
-src_path = project_root / "src"
-if str(src_path) not in sys.path:
-    sys.path.insert(0, str(src_path))
+import os
+import json
+import time
+from typing import List, Callable
 
 
 class PrimalityBenchmark:
@@ -38,21 +40,21 @@ class PrimalityBenchmark:
         ]
 
         results = {}
-        for range_name, test_numbers in test_ranges:
+        for range_name, numbers in test_ranges:
             print(f"\nBenchmarking {range_name}...")
             results[range_name] = {}
-            subset = test_numbers[:1000]
+            subset = numbers[:1000]
             for algo_name in self.algorithms:
                 try:
-                    benchmark_time = self.benchmark_algorithm(
+                    bench_time = self.benchmark_algorithm(
                         algo_name, subset, iterations=10
                     )
-                    numbers_per_second = len(subset) / benchmark_time
+                    nums_per_sec = len(subset) / bench_time
                     results[range_name][algo_name] = {
-                        "time_seconds": benchmark_time,
-                        "numbers_per_second": numbers_per_second,
+                        "time_seconds": bench_time,
+                        "numbers_per_second": nums_per_sec,
                     }
-                    print(f"  {algo_name}: {numbers_per_second:.2f} numbers/sec")
+                    print(f"  {algo_name}: {nums_per_sec:.2f} numbers/sec")
                 except Exception as e:
                     print(f"  {algo_name}: ERROR - {e}")
                     results[range_name][algo_name] = {"error": str(e)}
@@ -98,7 +100,9 @@ def main():
         print("✓ Cython Miller-Rabin geladen")
     except ImportError:
         try:
-            from prim.optimized_cython import optimized_primality_test
+            from prim.core.forisek_jancina import (
+                forisek_jancina_test as optimized_primality_test,
+            )
 
             benchmark.register_algorithm(
                 "Miller-Rabin (Python)", optimized_primality_test
@@ -127,7 +131,7 @@ def main():
     except Exception as e:
         print(f"✗ Baillie-PSW Fehler: {e}")
 
-    # Validierung aller Implementierungen
+    # Validierung
     sample_primes = [2, 3, 5, 97, 7919]
     for name, func in benchmark.algorithms.items():
         for p in sample_primes:
