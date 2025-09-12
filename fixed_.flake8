@@ -31,3 +31,13 @@ per-file-ignores =
     benchmarks/*.py:C901,F821
     # Analysis modules may have undefined names from optional dependencies
     src/prim/analysis/*.py:F821
+
+[flake8]
+exclude =
+    modul3_hybrid_performance/*.c,
+    modul3_hybrid_performance/*.sh,
+    _fj32_c.c,
+    primetest.cpp,
+    modul5_data/,
+    modul6_data/
+max-line-length = 88

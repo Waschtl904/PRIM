@@ -1,8 +1,5 @@
-﻿# -*- coding: utf-8 -*-
-"""
-Baillie-PSW Test Wrapper
-"""
-
+﻿# src/prim/baillie_psw_wrapper.py
+# -*- coding: utf-8 -*-
 from .core.baillie_psw import baillie_psw as _baillie_psw_core
 
 

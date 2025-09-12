@@ -1,10 +1,12 @@
-﻿#!/usr/bin/env python3
-"""
-Minimal setup.py for backwards compatibility.
-Actual configuration is in pyproject.toml.
-"""
+﻿# setup.py
+from setuptools import setup, find_packages
 
-from setuptools import setup
-
-# All configuration is in pyproject.toml
-setup()
+setup(
+    name="PRIM",
+    version="0.1",
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
+    install_requires=[
+        # hier deine Abhängigkeiten, z.B. "numpy", "pandas", ...
+    ],
+)

@@ -8,8 +8,8 @@ import sys
 import os
 from pathlib import Path
 
-# Bestimme Projektverzeichnis 
-current_file = Path(__file__).resolve() if '__file__' in globals() else Path.cwd()
+# Bestimme Projektverzeichnis
+current_file = Path(__file__).resolve() if "__file__" in globals() else Path.cwd()
 project_root = current_file.parent
 src_path = project_root / "src"
 
@@ -24,6 +24,7 @@ print(f"Python Path: {src_path}")
 
 try:
     import prim
+
     print("✅ PRIM Module importiert")
 
     benchmark_dir = project_root / "benchmarks"
@@ -39,15 +40,18 @@ try:
 
                     # Setze PYTHONPATH für Subprocess
                     env = os.environ.copy()
-                    env['PYTHONPATH'] = str(src_path) + os.pathsep + env.get('PYTHONPATH', '')
+                    env["PYTHONPATH"] = (
+                        str(src_path) + os.pathsep + env.get("PYTHONPATH", "")
+                    )
 
-                    result = subprocess.run([
-                        sys.executable, str(benchmark_file)
-                    ], cwd=str(project_root), 
-                       capture_output=True, 
-                       text=True, 
-                       env=env,
-                       timeout=300)  # 5 Minuten timeout
+                    result = subprocess.run(
+                        [sys.executable, str(benchmark_file)],
+                        cwd=str(project_root),
+                        capture_output=True,
+                        text=True,
+                        env=env,
+                        timeout=300,
+                    )  # 5 Minuten timeout
 
                     if result.returncode == 0:
                         print(f"✅ {benchmark_file.name} erfolgreich")

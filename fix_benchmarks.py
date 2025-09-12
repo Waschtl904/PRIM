@@ -9,6 +9,7 @@ import sys
 import importlib.util
 from pathlib import Path
 
+
 def fix_benchmark_imports():
     """Repariert Import-Probleme in Benchmark-Skripten"""
 
@@ -35,7 +36,7 @@ def fix_benchmark_imports():
         print(f"Prüfe: {py_file}")
 
         try:
-            with open(py_file, 'r', encoding='utf-8') as f:
+            with open(py_file, "r", encoding="utf-8") as f:
                 content = f.read()
 
             original_content = content
@@ -48,7 +49,7 @@ def fix_benchmark_imports():
 
             # Schreibe nur wenn geändert
             if content != original_content:
-                with open(py_file, 'w', encoding='utf-8') as f:
+                with open(py_file, "w", encoding="utf-8") as f:
                     f.write(content)
                 fixed_files.append(py_file)
                 print(f"  💾 {py_file} gespeichert")
@@ -60,6 +61,7 @@ def fix_benchmark_imports():
 
     print(f"\n📊 {len(fixed_files)} Dateien repariert")
     return True
+
 
 def test_benchmark_imports():
     """Testet ob Benchmark-Imports funktionieren"""
@@ -74,13 +76,7 @@ def test_benchmark_imports():
         print(f"✅ Python-Path erweitert: {src_path}")
 
     # Teste kritische Imports
-    critical_imports = [
-        "prim",
-        "prim.core",
-        "prim.algorithms", 
-        "numpy",
-        "matplotlib"
-    ]
+    critical_imports = ["prim", "prim.core", "prim.algorithms", "numpy", "matplotlib"]
 
     success_count = 0
 
@@ -96,6 +92,7 @@ def test_benchmark_imports():
 
     print(f"\n📊 {success_count}/{len(critical_imports)} Imports erfolgreich")
     return success_count == len(critical_imports)
+
 
 def create_benchmark_runner():
     """Erstellt ein Benchmark-Runner-Skript"""
@@ -154,17 +151,18 @@ except Exception as e:
     print(f"❌ Unerwarteter Fehler: {e}")
 """
 
-    with open("run_benchmarks.py", "w", encoding='utf-8') as f:
+    with open("run_benchmarks.py", "w", encoding="utf-8") as f:
         f.write(runner_script)
 
     print(f"\n✅ Benchmark Runner erstellt: run_benchmarks.py")
+
 
 if __name__ == "__main__":
     print("PRIM BENCHMARK REPARATUR")
     print("=" * 40)
 
     fix_benchmark_imports()
-    test_benchmark_imports() 
+    test_benchmark_imports()
     create_benchmark_runner()
 
     print("\n=" * 40)

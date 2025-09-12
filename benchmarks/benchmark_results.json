@@ -1,44 +1,56 @@
 {
   "Small (10^5)": {
     "Naive Trial Division": {
-      "time_seconds": 1.903000011225231e-05,
-      "numbers_per_second": 2627430.357596683
+      "time_seconds": 2.762000003713183e-05,
+      "numbers_per_second": 1810282.4016213214
     },
     "Miller-Rabin (Cython)": {
-      "time_seconds": 5.466000002343208e-05,
-      "numbers_per_second": 914745.7003030664
+      "time_seconds": 0.00012877999997726875,
+      "numbers_per_second": 388259.04650431446
     },
     "Forisek-Jancina (C)": {
-      "time_seconds": 4.181999993306818e-05,
-      "numbers_per_second": 1195600.1932095576
+      "time_seconds": 9.250999992218567e-05,
+      "numbers_per_second": 540482.1104967815
+    },
+    "Baillie-PSW": {
+      "time_seconds": 2.578999992692843e-05,
+      "numbers_per_second": 1938735.9496574826
     }
   },
   "Medium (10^7)": {
     "Naive Trial Division": {
-      "time_seconds": 1.7010000010486693e-05,
-      "numbers_per_second": 2939447.3820796544
+      "time_seconds": 3.111999994871439e-05,
+      "numbers_per_second": 1606683.8072750564
     },
     "Miller-Rabin (Cython)": {
-      "time_seconds": 4.602999997587176e-05,
-      "numbers_per_second": 1086248.0996352215
+      "time_seconds": 9.622000015951926e-05,
+      "numbers_per_second": 519642.48510815855
     },
     "Forisek-Jancina (C)": {
-      "time_seconds": 4.1760000021895395e-05,
-      "numbers_per_second": 1197318.0070350633
+      "time_seconds": 8.345000005647308e-05,
+      "numbers_per_second": 599161.1739504316
+    },
+    "Baillie-PSW": {
+      "time_seconds": 0.0007147800000893767,
+      "numbers_per_second": 69951.59348855306
     }
   },
   "Large (10^9)": {
     "Naive Trial Division": {
-      "time_seconds": 8.200000593205914e-07,
-      "numbers_per_second": 1219512.1068997812
+      "time_seconds": 1.0199999451288023e-06,
+      "numbers_per_second": 980392.2096032302
     },
     "Miller-Rabin (Cython)": {
-      "time_seconds": 5.669000001944369e-05,
-      "numbers_per_second": 17639.795372323468
+      "time_seconds": 2.120000135619193e-06,
+      "numbers_per_second": 471698.0830323993
     },
     "Forisek-Jancina (C)": {
-      "time_seconds": 2.9199998607509768e-06,
-      "numbers_per_second": 342465.76975617255
+      "time_seconds": 2.2299998818198217e-06,
+      "numbers_per_second": 448430.517038385
+    },
+    "Baillie-PSW": {
+      "time_seconds": 1.049999991664663e-06,
+      "numbers_per_second": 952380.9599413489
     }
   }
 }
