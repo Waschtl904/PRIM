@@ -20,6 +20,13 @@ import pandas as pd
 
 from prim.analysis.benchmarks import AdvancedBenchmarkAnalyzer
 
+try:
+    from prim.algorithms.wheel_sieve.modul2_simple_sieve_numba import simple_sieve
+
+    HAVE_NUMBA = True
+except ImportError:
+    HAVE_NUMBA = False
+
 
 def miller_rabin(n: int) -> bool:
     n = int(n)
@@ -63,7 +70,6 @@ def lucas_prp(n: int) -> bool:
             return (0, 2, 1)
         if k == 1:
             return (1, P, Q)
-        # rekursives Verdoppeln
         U2j, V2j, Q2j = lucas_step(n, P, Q, k >> 1)
         U = (U2j * V2j) % n
         V = (V2j * V2j - 2 * Q2j) % n
@@ -75,14 +81,18 @@ def lucas_prp(n: int) -> bool:
             Qk = (Qk * Q1) % n
         return (U, V, Qk)
 
-    # Prüfe U_{n+1} mod n
     U, V, _ = lucas_step(n, P, Q, n + 1)
     return U == 0  # liefert bool
 
 
 def baillie_psw(n: int) -> bool:
-    # explizit in bool konvertieren, um MyPy-Fehler zu vermeiden
-    return bool(miller_rabin(n) and lucas_prp(n))
+    mr = miller_rabin(n)
+    print(f"[DEBUG] miller_rabin({n}) → {mr}")
+    lp = lucas_prp(n)
+    print(f"[DEBUG] lucas_prp({n}) → {lp}")
+    result = bool(mr and lp)
+    print(f"[DEBUG] baillie_psw({n}) → {result}")
+    return result
 
 
 def main():
@@ -101,13 +111,12 @@ def main():
 
     # Testzahlen
     limit = 10**6
-    test_numbers = np.concatenate(
-        [
-            analyzer.sieve_numba(limit),
-            # Carmichael-Zahlen
-            np.array([2, 3, 4, 561, 1105, 1729, 2465, 2821]),
-        ]
-    )
+    if HAVE_NUMBA:
+        primes = simple_sieve(limit)
+        print("✓ simple_sieve (Numba) geladen")
+    else:
+        print("⚠ numba nicht installiert, verwende Python-Sieb")
+        primes = analyzer.sieve_simple(limit)  # o. ä.
 
     results = []
     for n in test_numbers:

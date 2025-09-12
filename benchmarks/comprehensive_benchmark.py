@@ -1,11 +1,15 @@
 import sys
 import os
 import time
-from typing import List, Callable
 import json
-from prim.hybrid_wrapper import hybrid_test  # Neuer Import für Hybrid-Test
+from pathlib import Path
+from typing import List, Callable
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# Füge src zum Python-Path hinzu
+project_root = Path(__file__).parent.parent
+src_path = project_root / "src"
+if str(src_path) not in sys.path:
+    sys.path.insert(0, str(src_path))
 
 
 class PrimalityBenchmark:
@@ -107,38 +111,26 @@ def main():
     try:
         from prim.fj_wrapper import forisek_jancina_test
 
-        # Validierung
         assert forisek_jancina_test(97), "Forisek-Jancina-Check fehlgeschlagen"
         benchmark.register_algorithm("Forisek-Jancina (C)", forisek_jancina_test)
         print("✓ Forisek-Jancina C-Implementation geladen")
     except Exception as e:
         print(f"✗ Forisek-Jancina Fehler: {e}")
 
-    # 4. Baillie-PSW (C)
+    # 4. Baillie-PSW
     try:
         from prim.baillie_psw_wrapper import baillie_psw
 
-        # Validierung
         assert baillie_psw(97), "Baillie-PSW-Check fehlgeschlagen"
-        benchmark.register_algorithm("Baillie-PSW (C)", baillie_psw)
-        print("✓ Baillie-PSW C-Implementation geladen")
+        benchmark.register_algorithm("Baillie-PSW", baillie_psw)
+        print("✓ Baillie-PSW geladen")
     except Exception as e:
         print(f"✗ Baillie-PSW Fehler: {e}")
 
-    # 5. Hybrid Test
-    benchmark.register_algorithm("Hybrid Test", hybrid_test)
-    print("✓ Hybrid Test geladen")
-
     # Validierung aller Implementierungen
-    sample_primes = [2, 3, 5, 97, 7919]  # Entferne die zusammengesetzte große Zahl
+    sample_primes = [2, 3, 5, 97, 7919]
     for name, func in benchmark.algorithms.items():
         for p in sample_primes:
-            if name in ("Naive Trial Division", "Miller-Rabin (Cython)") and p > 2**32:
-                continue
-            if name == "Forisek-Jancina (C)" and p > 2**32:
-                continue
-            if name == "Baillie-PSW (C)" and p > 2**32:
-                continue
             if not func(p):
                 raise RuntimeError(f"{name} gibt für {p} False zurück!")
     print("✓ Alle Implementierungen validiert")
