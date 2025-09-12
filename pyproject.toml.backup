@@ -160,7 +160,6 @@ extend-ignore = [
   "W503",
 ]
 exclude = [
-    "prim",
   ".git",
   "__pycache__",
   "build",
@@ -183,7 +182,6 @@ namespace_packages = true
 explicit_package_bases = true
 mypy_path = "src"
 exclude = [
-    "prim",
     "native/wheel_sieve/setup\\.py",
     "prim/",  # Nur das Root-prim-Verzeichnis excludieren
     "build/",
@@ -201,4 +199,3 @@ module = [
   "scipy.*",
 ]
 ignore_missing_imports = true
-

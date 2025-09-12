@@ -77,11 +77,12 @@ def lucas_prp(n: int) -> bool:
 
     # Prüfe U_{n+1} mod n
     U, V, _ = lucas_step(n, P, Q, n + 1)
-    return U == 0
+    return U == 0  # liefert bool
 
 
 def baillie_psw(n: int) -> bool:
-    return miller_rabin(n) and lucas_prp(n)
+    # explizit in bool konvertieren, um MyPy-Fehler zu vermeiden
+    return bool(miller_rabin(n) and lucas_prp(n))
 
 
 def main():

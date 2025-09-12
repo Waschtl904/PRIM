@@ -9,4 +9,20 @@
     rev: 7.3.0
     hooks:
       - id: flake8
-        additional_dependencies: [ "flake8>=5.0.0" ]
+        additional_dependencies: ["flake8>=5.0.0"]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        args: [--config-file=mypy.ini]
+        additional_dependencies: [
+          types-requests,
+          types-setuptools,
+          numpy,
+          scipy,
+          matplotlib,
+          pandas,
+          numba
+        ]
+        files: ^src/prim_src/

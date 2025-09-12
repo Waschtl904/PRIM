@@ -1,6 +1,11 @@
-﻿.venv/
+﻿# Virtuelle Umgebung
+.venv/
+
+# Python Cache
 __pycache__/
 *.pyc
+
+# Daten und Plots
 data/
 plots/
 .ipynb_checkpoints/
@@ -8,13 +13,13 @@ plots/
 # Editor
 .vscode/
 
-# Build artifacts - aber NICHT die Source-C-Dateien!
+# Build-Artefakte
 build/
 *.pyd
 src/prim/*.pyd
 *.egg-info/
 
-# Kompilierte Binaries und Object-Dateien (aber nicht Source-Code)
+# Kompilierte Binaries und Objektdateien
 *.dll
 *.so
 *.dylib
@@ -26,5 +31,7 @@ src/prim/*.pyd
 *.ilk
 *.pdb
 
-# Cython-generierte C-Dateien (optional - nur die auto-generierten)
+# Cython-generierte C-Dateien (optional)
 # prim/optimized_cython.c  # Falls Cython das generiert
+
+# **Wichtig**: src/prim_src wird nicht ignoriert, damit MyPy und CI darauf zugreifen können
