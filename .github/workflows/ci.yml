@@ -49,10 +49,9 @@ jobs:
         run: black --check src/ tests/
 
       - name: Run mypy
-        run: |
-          mypy --config-file=mypy.ini src/prim_src
-          mypy --config-file=mypy.ini tests
-          # Entferne continue-on-error nach dem Fix
+        run: mypy --config-file=mypy.ini src/prim
+             mypy --config-file=mypy.ini tests
+        # Entferne continue-on-error nach dem Fix
 
 
   # Unit Tests
