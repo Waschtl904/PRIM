@@ -44,7 +44,7 @@ Set-Location "prim"
 $cythonAvailable = Get-Command cython -ErrorAction SilentlyContinue
 if ($cythonAvailable) {
     Write-Host "Cython found, building optimized extension..." -ForegroundColor Cyan
-    
+
     try {
         & python setup_cython.py build_ext --inplace
         if ($LASTEXITCODE -eq 0) {
@@ -73,7 +73,7 @@ try:
     # Test ctypes wrapper zuerst
     print('Testing ctypes wrapper...')
     from baillie_psw_wrapper import baillie_psw
-    
+
     # Test bekannte Primzahlen
     test_cases = [
         (2, True), (3, True), (5, True), (7, True),
@@ -82,7 +82,7 @@ try:
         (561, False),  # Carmichael-Zahl
         (1105, False), # Carmichael-Zahl
     ]
-    
+
     print('Testing individual numbers...')
     all_passed = True
     for n, expected in test_cases:
@@ -95,41 +95,41 @@ try:
         except Exception as e:
             print(f'✗ baillie_psw({n}) failed: {e}')
             all_passed = False
-    
+
     if all_passed:
         print('\n✓ All basic tests passed!')
     else:
         print('\n✗ Some tests failed!')
         sys.exit(1)
-        
+
     # Test hybrid wrapper
     print('\nTesting hybrid wrapper...')
     try:
         from hybrid_wrapper import is_prime, batch_primality_test
-        
+
         # Test ein paar Zahlen
         test_nums = [97, 98, 99, 100, 101]
         expected = [True, False, False, False, True]
-        
+
         individual_results = [is_prime(n) for n in test_nums]
         batch_results = batch_primality_test(test_nums)
-        
+
         print(f'Individual: {individual_results}')
         print(f'Batch:      {batch_results}')
         print(f'Expected:   {expected}')
-        
+
         if individual_results == expected and batch_results == expected:
             print('✓ Hybrid wrapper working correctly!')
         else:
             print('✗ Hybrid wrapper has issues!')
-            
+
     except ImportError as e:
         print(f'⚠ Hybrid wrapper not available: {e}')
     except Exception as e:
         print(f'✗ Hybrid wrapper error: {e}')
-    
+
     print('\n=== TESTS COMPLETED ===')
-    
+
 except Exception as e:
     print(f'ERROR: {e}')
     import traceback
@@ -159,6 +159,6 @@ Write-Host "  from prim.baillie_psw_wrapper import baillie_psw"
 Write-Host "  print(baillie_psw(97))  # True"
 Write-Host "  print(baillie_psw(561)) # False (Carmichael number)"
 Write-Host ""
-Write-Host "For hybrid mode:" -ForegroundColor Cyan  
+Write-Host "For hybrid mode:" -ForegroundColor Cyan
 Write-Host "  from prim.hybrid_wrapper import is_prime"
 Write-Host "  results = [is_prime(n) for n in [97, 98, 99, 100, 101]]"

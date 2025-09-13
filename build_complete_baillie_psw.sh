@@ -32,7 +32,7 @@ sys.path.insert(0, 'prim')
 
 try:
     from hybrid_wrapper import is_prime, batch_primality_test
-    
+
     # Test bekannte Primzahlen
     test_cases = [
         (2, True), (3, True), (5, True), (7, True),
@@ -42,24 +42,24 @@ try:
         (1105, False), # Carmichael-Zahl
         (1729, False), # Ramanujan-Zahl
     ]
-    
+
     print('Testing individual numbers...')
     for n, expected in test_cases:
         result = is_prime(n)
         status = '✓' if result == expected else '✗'
         print(f'{status} is_prime({n}) = {result} (expected {expected})')
-    
+
     # Test Batch-Processing
     print('\nTesting batch processing...')
     numbers = [n for n, _ in test_cases]
     expected_results = [exp for _, exp in test_cases]
     batch_results = batch_primality_test(numbers)
-    
+
     all_correct = all(r == e for r, e in zip(batch_results, expected_results))
     print(f'Batch test: {\"✓\" if all_correct else \"✗\"} All results correct: {all_correct}')
-    
+
     print('\n=== ALL TESTS COMPLETED SUCCESSFULLY ===')
-    
+
 except Exception as e:
     print(f'Test failed: {e}')
     import traceback

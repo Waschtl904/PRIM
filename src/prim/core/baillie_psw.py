@@ -1,6 +1,4 @@
-# src/prim/core/baillie_psw.py
-
-from sympy.ntheory.primetest import isprime as sympy_isprime, is_strong_lucas_prp
+from sympy.ntheory.primetest import isprime as is_strong_lucas_prp
 
 
 def miller_rabin(n: int) -> bool:

@@ -584,13 +584,13 @@ uint64_t modpow_c(uint64_t a, uint64_t d, uint64_t n) {
 int sprp_c(uint64_t n, uint64_t a) {
     if (n < 2) return 0;
     if ((n & 1) == 0) return n == 2;
-    
+
     uint64_t d = n - 1, s = 0;
     while ((d & 1) == 0) { d >>= 1; s++; }
-    
+
     uint64_t x = modpow_c(a, d, n);
     if (x == 1 || x == n - 1) return 1;
-    
+
     for (uint64_t i = 1; i < s; i++) {
         x = (__uint128_t)x * x % n;
         if (x == n - 1) return 1;
@@ -604,7 +604,7 @@ int fj32_c(uint32_t n) {
     if (n % 3 == 0) return n == 3;
     if (n % 5 == 0) return n == 5;
     if (n % 7 == 0) return n == 7;
-    
+
     uint32_t bases[] = {2, 7, 61};
     uint32_t h = fj_hash_c(n);
     uint32_t base = bases[h % 3];

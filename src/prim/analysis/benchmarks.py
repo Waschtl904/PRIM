@@ -13,7 +13,6 @@ Systematische Performance- und Speicheranalyse über Parameter-Grid:
 Autor: Sebastian
 Datum: September 2025
 """
-
 import os
 import sys
 import time
@@ -274,7 +273,7 @@ class AdvancedBenchmarkAnalyzer:
                     current_combination += 1
                     print(
                         f"[{current_combination}/{total_combinations}] "
-                        f"N={limit:,}, Segment={segment_size:,}, Config={config}"
+                        f"N={limit: , }, Segment={segment_size: , }, Config={config}"
                     )
 
                     # Neue Analyzer-Instanz für diese Konfiguration
@@ -509,7 +508,7 @@ class AdvancedBenchmarkAnalyzer:
         recommendations = []
         recommendations.append("# Modul 4 - Benchmark-Empfehlungen\n")
         recommendations.append(
-            f"Generiert am: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n"
+            f"Generiert am: {pd.Timestamp.now().strftime('%Y-%m-%d %H: %M: %S')}\n\n"
         )
 
         # Beste Konfiguration pro Limit
@@ -519,16 +518,16 @@ class AdvancedBenchmarkAnalyzer:
             best_runtime = limit_data.loc[limit_data["sieve_runtime"].idxmin()]
             best_memory = limit_data.loc[limit_data["sieve_memory_mb"].idxmin()]
 
-            recommendations.append(f"### N = {limit:,}\n")
+            recommendations.append(f"### N = {limit: , }\n")
             recommendations.append(
                 f"- **Beste Laufzeit**: {best_runtime['method']} "
-                f"({best_runtime['sieve_runtime']:.6f}s, "
-                f"{best_runtime['sieve_memory_mb']:.2f}MB)\n"
+                f"({best_runtime['sieve_runtime']: .6f}s, "
+                f"{best_runtime['sieve_memory_mb']: .2f}MB)\n"
             )
             recommendations.append(
                 f"- **Geringster Speicher**: {best_memory['method']} "
-                f"({best_memory['sieve_runtime']:.6f}s, "
-                f"{best_memory['sieve_memory_mb']:.2f}MB)\n\n"
+                f"({best_memory['sieve_runtime']: .6f}s, "
+                f"{best_memory['sieve_memory_mb']: .2f}MB)\n\n"
             )
 
         # Allgemeine Empfehlungen
@@ -556,8 +555,8 @@ class AdvancedBenchmarkAnalyzer:
                 .sort_values()
             )
             recommendations.append(
-                f"✓ **Optimale Segment-Größe**: {best_segments.index[0]:,} "
-                f"(Ø {best_segments.iloc[0]:.6f}s)\n"
+                f"✓ **Optimale Segment-Größe**: {best_segments.index[0]: , } "
+                f"(Ø {best_segments.iloc[0]: .6f}s)\n"
             )
 
         # In Datei schreiben
@@ -587,9 +586,9 @@ def main():
     if not NUMBA_AVAILABLE:
         numba_configs = [{"use_numba": False, "parallel": False, "cache": False}]
 
-    print("Parameter-Grid:")
-    print(f"  Limits: {[f'{l:,}' for l in limits]}")
-    print(f"  Segment-Größen: {[f'{s:,}' for s in segment_sizes]}")
+    print("Parameter-Grid: ")
+    print(f"  Limits: {[f'{l: , }' for lst in limits]}")
+    print(f"  Segment-Größen: {[f'{s: , }' for s in segment_sizes]}")
     print(f"  Numba-Konfigurationen: {len(numba_configs)}")
     print()
 
@@ -640,7 +639,7 @@ def main():
     )
 
     print("\n✅ Modul 4 Benchmark erfolgreich abgeschlossen!")
-    print("\nDateien erstellt:")
+    print("\nDateien erstellt: ")
     print("  📊 plots/modul4_performance_analysis.png")
     print("  📊 plots/modul4_heatmaps.png")
     print("  📈 data/modul4_benchmark_YYYYMMDD_HHMMSS.csv")

@@ -9,8 +9,8 @@ Autor: Sebastian
 Datum: September 2025
 """
 
-import importlib.util
 import os
+import importlib.util
 import sys
 import time
 from typing import Any, Dict, List, Tuple
@@ -20,7 +20,7 @@ import numpy as np
 import pandas as pd
 
 # Projekt-Root definieren und in sys.path einfÃ¼gen
-project_root = r"C:\Users\sebas\Desktop\coding\PRIM"
+project_root = r"C: \Users\sebas\Desktop\coding\PRIM"
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
@@ -98,16 +98,16 @@ class HybridPrimeAnalyzer:
         return _test_func if self.has_fj32 else fallback_is_prime_fj32
 
     def run_sieve_only(self, limit: int) -> Tuple[np.ndarray, float]:
-        print(f"ðŸ” FÃ¼hre Sieb-Test bis {limit:,} aus...")
+        print(f"ðŸ” FÃ¼hre Sieb-Test bis {limit: , } aus...")
         sieve_func = self.get_sieve_function()
         start = time.perf_counter()
         primes = sieve_func(limit)
         elapsed = time.perf_counter() - start
-        print(f"âœ“ Sieb fand {len(primes):,} Primzahlen in {elapsed:.6f}s")
+        print(f"âœ“ Sieb fand {len(primes): , } Primzahlen in {elapsed: .6f}s")
         return primes, elapsed
 
     def run_fj32_verification(self, primes: np.ndarray) -> Tuple[int, int, float]:
-        print(f"ðŸ” Verifiziere {len(primes):,} Primzahlen mit FJ32...")
+        print(f"ðŸ” Verifiziere {len(primes): , } Primzahlen mit FJ32...")
         test_func = self.get_primality_test()
         verified = 0
         failed = 0
@@ -121,12 +121,12 @@ class HybridPrimeAnalyzer:
                     print(f"âš ï¸ FJ32 widersprach Sieb bei {p}")
         elapsed = time.perf_counter() - start
         print(
-            f"âœ“ Verifikation: {verified:,} bestÃ¤tigt, {failed:,} WidersprÃ¼che in {elapsed:.6f}s"
+            f"âœ“ Verifikation: {verified: , } bestÃ¤tigt, {failed: , } WidersprÃ¼che in {elapsed: .6f}s"
         )
         return verified, failed, elapsed
 
     def run_fj32_only(self, limit: int) -> Tuple[List[int], float]:
-        print(f"ðŸ” FÃ¼hre reinen FJ32-Test bis {limit:,} aus...")
+        print(f"ðŸ” FÃ¼hre reinen FJ32-Test bis {limit: , } aus...")
         test_func = self.get_primality_test()
         primes = []
         start = time.perf_counter()
@@ -134,19 +134,19 @@ class HybridPrimeAnalyzer:
             if test_func(n):
                 primes.append(n)
         elapsed = time.perf_counter() - start
-        print(f"âœ“ FJ32 fand {len(primes):,} Primzahlen in {elapsed:.6f}s")
+        print(f"âœ“ FJ32 fand {len(primes): , } Primzahlen in {elapsed: .6f}s")
         return primes, elapsed
 
     def run_hybrid_workflow(self, limit: int) -> Dict[str, Any]:
         print(f"\n{'='*60}")
-        print(f"ðŸš€ HYBRID-WORKFLOW fÃ¼r N = {limit:,}")
+        print(f"ðŸš€ HYBRID-WORKFLOW fÃ¼r N = {limit: , }")
         print(f"{'='*60}")
         sieve_primes, t_sieve = self.run_sieve_only(limit)
         v, f, t_verify = self.run_fj32_verification(sieve_primes)
         if limit <= 100_000:
             _, t_fj32 = self.run_fj32_only(limit)
         else:
-            print(f"â­ï¸ Ãœberspringe reinen FJ32-Test (N={limit:,} zu groÃŸ)")
+            print(f"â­ï¸ Ãœberspringe reinen FJ32-Test (N={limit: , } zu groÃŸ)")
             t_fj32 = float("inf")
         total = t_sieve + t_verify
         result = {
@@ -163,9 +163,9 @@ class HybridPrimeAnalyzer:
         if t_fj32 != float("inf"):
             result["speedup"] = t_fj32 / total
             print(
-                "ðŸ“Š PERFORMANCE-ANALYSE:\n"
-                f"   Sieb: {t_sieve:.6f}s, Verif.: {t_verify:.6f}s, Hybrid: {total:.6f}s, "
-                f"FJ32: {t_fj32:.6f}s, Speedup: {result['speedup']:.2f}x"
+                "ðŸ“Š PERFORMANCE-ANALYSE: \n"
+                f"   Sieb: {t_sieve: .6f}s, Verif.: {t_verify: .6f}s, Hybrid: {total: .6f}s, "
+                f"FJ32: {t_fj32: .6f}s, Speedup: {result['speedup']: .2f}x"
             )
         self.results.append(result)
         return result
@@ -223,7 +223,7 @@ def main():
     analyzer = HybridPrimeAnalyzer()
     test_limits = [1_000, 10_000, 100_000, 1_000_000]
     df = analyzer.benchmark_multiple_limits(test_limits)
-    print("\nðŸ“‹ ZUSAMMENFASSUNG:")
+    print("\nðŸ“‹ ZUSAMMENFASSUNG: ")
     print(
         df[["limit", "sieve_count", "sieve_time", "hybrid_time", "has_fj32"]].to_string(
             index=False

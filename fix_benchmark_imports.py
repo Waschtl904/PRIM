@@ -3,7 +3,6 @@
 Erweiterte Benchmark-Import-Reparatur für PRIM Repository
 """
 
-import os
 import sys
 from pathlib import Path
 

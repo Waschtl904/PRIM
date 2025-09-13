@@ -5,7 +5,9 @@
 
 import os
 import sys
+from typing import List
 
+exclude_patterns: List[str] = []
 sys.path.insert(0, os.path.abspath("../../prim"))
 
 # -- Project information -----------------------------------------------------

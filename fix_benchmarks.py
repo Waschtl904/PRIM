@@ -4,7 +4,6 @@ Benchmark Fix-Skript für PRIM Repository
 Repariert häufige Probleme mit Benchmarks nach Strukturänderungen
 """
 
-import os
 import sys
 import importlib.util
 from pathlib import Path
@@ -82,7 +81,7 @@ def test_benchmark_imports():
 
     for module_name in critical_imports:
         try:
-            module = importlib.import_module(module_name)
+            importlib.import_module(module_name)
             print(f"✅ {module_name}")
             success_count += 1
         except ImportError as e:
@@ -102,7 +101,7 @@ import sys
 import os
 from pathlib import Path
 
-# Bestimme Projektverzeichnis 
+# Bestimme Projektverzeichnis
 current_file = Path(__file__).resolve() if '__file__' in globals() else Path.cwd()
 project_root = current_file.parent
 src_path = project_root / "src"

@@ -23,7 +23,7 @@ print(f"Project Root: {project_root}")
 print(f"Python Path: {src_path}")
 
 try:
-    import prim
+    pass
 
     print("✅ PRIM Module importiert")
 

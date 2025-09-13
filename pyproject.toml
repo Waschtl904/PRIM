@@ -63,11 +63,10 @@ exclude_lines = [
 
 [tool.black]
 line-length = 88
-target-version = ["py38", "py39", "py310", "py311"]
+target-version = ["py38", "py39", "py310"]
 include = '\.pyi?$'
 extend-exclude = '''
 /(
-  # directories
   \.eggs
   | \.git
   | \.hg
@@ -76,6 +75,8 @@ extend-exclude = '''
   | \.venv
   | build
   | dist
+  | docs
+  | native
 )/
 '''
 
@@ -83,3 +84,29 @@ extend-exclude = '''
 profile = "black"
 multi_line_output = 3
 line_length = 88
+
+[tool.flake8]
+extend-select = ["ANN"]
+max-line-length = 88
+extend-ignore = [
+  "E203",  # Konflikt mit Black
+  "W503",  # Konflikt mit Black
+  "F401",  # Unbenutzte Importe
+  "F841",  # Unbenutzte Variablen
+]
+exclude = [
+  ".venv",
+  "build",
+  "dist",
+  "__pycache__",
+  "docs",
+  "native",
+  "benchmarks/benchmark_results.json",
+  "*.old"
+]
+
+[tool.mypy]
+python_version = 3.8
+strict = false
+ignore_missing_imports = true
+files = "src/prim"

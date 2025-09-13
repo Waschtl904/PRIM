@@ -7,7 +7,6 @@ Dieses Skript:
 - Führt Naive Trial Division, Miller-Rabin, Forisek-Jancina und Baillie-PSW Benchmarks durch
 - Speichert Ergebnisse in benchmarks/benchmark_results.json
 """
-
 import os
 import json
 import time
@@ -54,7 +53,7 @@ class PrimalityBenchmark:
                         "time_seconds": bench_time,
                         "numbers_per_second": nums_per_sec,
                     }
-                    print(f"  {algo_name}: {nums_per_sec:.2f} numbers/sec")
+                    print(f"  {algo_name}: {nums_per_sec: .2f} numbers/sec")
                 except Exception as e:
                     print(f"  {algo_name}: ERROR - {e}")
                     results[range_name][algo_name] = {"error": str(e)}
@@ -144,12 +143,12 @@ def main():
     benchmark.save_results(results)
 
     print("\n" + "=" * 60)
-    print("Benchmark Summary:")
+    print("Benchmark Summary: ")
     for range_name, range_results in results.items():
-        print(f"\n{range_name}:")
+        print(f"\n{range_name}: ")
         for algo, metrics in range_results.items():
             if "error" not in metrics:
-                print(f"  {algo}: {metrics['numbers_per_second']:.2f} numbers/sec")
+                print(f"  {algo}: {metrics['numbers_per_second']: .2f} numbers/sec")
             else:
                 print(f"  {algo}: ERROR - {metrics['error']}")
 
